@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.carlosdev.tmdbapp"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.carlosdev.tmdbapp"
