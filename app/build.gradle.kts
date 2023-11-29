@@ -58,4 +58,6 @@ dependencies {
     implementation("io.ktor:ktor-client-content-negotiation:2.3.6")
     implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.6")
 
+    implementation("app.moviebase:tmdb-api:1.2.0")
+
 }
