@@ -12,4 +12,7 @@
     <dimen name="movie_list_image_width">85dp</dimen>
 
     <dimen name="floating_button_size">50dp</dimen>
+
+    <dimen name="collapsing_toolbar_height">280dp</dimen>
+    <dimen name="collapsing_toolbar_image">200dp</dimen>
 </resources>
