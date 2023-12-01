@@ -30,11 +30,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding = ActivityMainBinding.inflate(layoutInflater)
+        supportActionBar?.hide()
         setContentView(binding.root)
 
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
     }
 
     override fun onSupportNavigateUp(): Boolean {
