@@ -61,6 +61,8 @@ dependencies {
     implementation("app.moviebase:tmdb-api:1.2.0")
 
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    implementation("com.squareup.picasso:picasso:2.8")
+
 
 
 }
