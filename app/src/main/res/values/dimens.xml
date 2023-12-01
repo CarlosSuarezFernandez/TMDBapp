@@ -1,6 +1,15 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
 
-    <dimen name="guideline_margin_start">24dp</dimen>
-    <dimen name="guideline_margin_end">24dp</dimen>
+    <dimen name="guideline_margin_start">16dp</dimen>
+    <dimen name="guideline_margin_end">16dp</dimen>
+
+    <dimen name="medium_margin">16dp</dimen>
+    <dimen name="small_margin">4dp</dimen>
+    <dimen name="big_margin">24dp</dimen>
+
+    <dimen name="movie_list_image_height">118dp</dimen>
+    <dimen name="movie_list_image_width">85dp</dimen>
+
+    <dimen name="floating_button_size">50dp</dimen>
 </resources>
