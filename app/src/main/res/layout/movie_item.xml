@@ -14,10 +14,11 @@
         android:layout_height="@dimen/movie_list_image_height"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:scaleType="fitXY"
         tools:src="@color/unpressed_accent"/>
 
     <ImageView
-        android:id="@+id/favoriteMark"
+        android:id="@+id/movieFavoriteMark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@id/movieImage"
