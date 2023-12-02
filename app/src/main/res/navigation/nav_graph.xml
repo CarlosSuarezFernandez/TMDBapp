@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_movieFragment"
             app:destination="@id/movieFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_favoritesFragment"
+            app:destination="@id/favoritesFragment" />
     </fragment>
     <fragment
         android:id="@+id/movieFragment"
@@ -24,6 +27,11 @@
             app:nullable="false"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.carlosdev.tmdbapp.presentation.favorites.FavoritesFragment"
+        android:label="FavoritesFragment"
+        tools:layout="@layout/fragment_favorites"/>
 
 
 </navigation>
