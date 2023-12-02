@@ -15,7 +15,5 @@ interface MovieRepository {
     val tmdb: Tmdb3
     suspend fun popularMovies(page: Int): MoviesResponse
     suspend fun movieDetail(id: Int): MovieDetailResponse
-    suspend fun favoriteMovies(): MoviesResponse
-    suspend fun addFavorite(id: Int): FavoriteResponse
-    suspend fun removeFavorite(id: Int): FavoriteResponse
+
 }
