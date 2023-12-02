@@ -1,7 +1,9 @@
 package com.carlosdev.tmdbapp.presentation.home.adapter
 
 import android.content.Context
+import android.os.Bundle
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import app.moviebase.tmdb.model.TmdbMovie
 import app.moviebase.tmdb.model.TmdbMoviePageResult
@@ -12,18 +14,27 @@ import com.carlosdev.tmdbapp.databinding.ItemEmptyViewBinding
 import com.carlosdev.tmdbapp.databinding.MovieItemBinding
 import com.squareup.picasso.Picasso
 
-class MoviesAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MoviesAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var content = mutableListOf<Content>()
     private var listOfFavorites = setOf<String>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder = when (viewType) {
-        MOVIE_ITEM_VIEW_TYPE -> MoviesViewHolder(
-            MovieItemBinding.inflate(parent.layoutInflater(), parent, false)
-        )
-        EMPTY_ITEM_VIEW_TYPE -> EmptyViewHolder(ItemEmptyViewBinding.inflate(parent.layoutInflater(), parent, false))
-        else -> illegalState()
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
+        when (viewType) {
+            MOVIE_ITEM_VIEW_TYPE -> MoviesViewHolder(
+                MovieItemBinding.inflate(parent.layoutInflater(), parent, false)
+            )
+
+            EMPTY_ITEM_VIEW_TYPE -> EmptyViewHolder(
+                ItemEmptyViewBinding.inflate(
+                    parent.layoutInflater(),
+                    parent,
+                    false
+                )
+            )
+
+            else -> illegalState()
+        }
 
     fun updateItems(newItems: List<TmdbMovie>, favorites: Set<String>) {
         content.clear()
@@ -46,15 +57,23 @@ class MoviesAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                         movieTitle.text = originalTitle
                         movieRating.text = voteAverage.toString()
                         movieYear.text = releaseDate?.year.toString()
-
-                        if(listOfFavorites.contains(id.toString())){
+                        listOfFavorites
+                        if (listOfFavorites.contains(id.toString())) {
                             movieFavoriteMark.setImageResource(R.drawable.marked_favorite)
-                        }else{
+                        } else {
                             movieFavoriteMark.setImageResource(R.drawable.unmarked_favorite)
                         }
                     }
                 }
+                holder.itemView.setOnClickListener { view ->
+                    val currentItem = content[position] as? Content.Item ?: illegalState()
+                    val bundle: Bundle = Bundle()
+                    bundle.putInt("movieId", currentItem.content.id)
+                    view.findNavController()
+                        .navigate(R.id.action_homeFragment_to_movieFragment, bundle)
+                }
             }
+
             is EmptyViewHolder -> {
                 holder.binding.messageTv.text = "No movies"
             }
