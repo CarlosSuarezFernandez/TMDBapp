@@ -5,9 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import app.moviebase.tmdb.model.TmdbMovie
+import com.carlosdev.tmdbapp.R
 import com.carlosdev.tmdbapp.databinding.HomeFragmentBinding
 import com.carlosdev.tmdbapp.domain.model.OutcomeState
 import com.carlosdev.tmdbapp.presentation.home.adapter.MoviesAdapter
@@ -35,7 +39,7 @@ class HomeFragment : Fragment() {
 
 
 
-        with(binding){
+        with(binding) {
             progressComponent.visibility = View.VISIBLE
             moviesRecyclerView.apply {
                 setHasFixedSize(true)
@@ -48,33 +52,49 @@ class HomeFragment : Fragment() {
         }
 
         loadMovies()
-
+        bindFavoritesButton()
     }
 
-    private fun loadMovies(){
+    private fun loadMovies() {
         binding.progressComponent.visibility = View.VISIBLE
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.movieRequestState.collect() {outcome ->
-                when(outcome) {
+            viewModel.movieRequestState.collect() { outcome ->
+                when (outcome) {
                     is OutcomeState.Error -> {
                         binding.progressComponent.visibility = View.GONE
                     }
-                    is OutcomeState.Success -> {binding.progressComponent.visibility = View.GONE}
-                    is OutcomeState.Progress -> {binding.progressComponent.visibility = View.VISIBLE}
+
+                    is OutcomeState.Success -> {
+                        binding.progressComponent.visibility = View.GONE
+                    }
+
+                    is OutcomeState.Progress -> {
+                        binding.progressComponent.visibility = View.VISIBLE
+                    }
                 }
             }
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.movies.collect{
-                val sharedPreferences = context?.getSharedPreferences("preferencias", Context.MODE_PRIVATE)
+            viewModel.movies.collect {
+                val sharedPreferences =
+                    context?.getSharedPreferences("preferencias", Context.MODE_PRIVATE)
                 var listOfFavorites = sharedPreferences?.getStringSet("favorites", setOf())
-                if (listOfFavorites.isNullOrEmpty()){
+                if (listOfFavorites.isNullOrEmpty()) {
                     listOfFavorites = setOf()
                 }
                 moviesAdapter?.updateItems(it, listOfFavorites)
             }
         }
     }
+
+    private fun bindFavoritesButton() {
+        with(binding) {
+            favoritesFloatingButton.setOnClickListener {
+                view?.findNavController()?.navigate(R.id.action_homeFragment_to_favoritesFragment)
+            }
+        }
+    }
+
 
 }
