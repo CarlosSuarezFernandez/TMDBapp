@@ -1,18 +1,15 @@
 package com.carlosdev.tmdbapp.presentation.movie
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.carlosdev.tmdbapp.databinding.FragmentMovieDetailBinding
 import com.carlosdev.tmdbapp.domain.model.OutcomeState
-import com.carlosdev.tmdbapp.presentation.home.adapter.MoviesAdapter
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -75,7 +72,6 @@ class MovieFragment : Fragment() {
                     movieName.text = it.title
                     Picasso.get().load(BASE_URL + it.backdropPath)
                         .into(movieImage)
-                    toolbarLayout.title = it.title
                     Picasso.get().load(BASE_URL + it.backdropPath)
                         .into(toolbarImage)
                     movieBudget.text = "Budget " + it.budget + "$"
