@@ -42,5 +42,4 @@ class HomeViewModel(
         }
 
     val movies: Flow<List<TmdbMovie>> = moviesLoadState.filterNotNull()
-
 }
