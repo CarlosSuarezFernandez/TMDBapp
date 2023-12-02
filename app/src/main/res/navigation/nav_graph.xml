@@ -9,5 +9,21 @@
         android:id="@+id/homeFragment"
         android:name="com.carlosdev.tmdbapp.presentation.home.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/home_fragment"/>
+        tools:layout="@layout/home_fragment">
+        <action
+            android:id="@+id/action_homeFragment_to_movieFragment"
+            app:destination="@id/movieFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieFragment"
+        android:name="com.carlosdev.tmdbapp.presentation.movie.MovieFragment"
+        android:label="MovieFragment"
+        tools:layout="@layout/fragment_movie_detail">
+        <argument
+            android:name="movieId"
+            app:nullable="false"
+            app:argType="integer" />
+    </fragment>
+
+
 </navigation>
