@@ -8,9 +8,9 @@ import com.carlosdev.tmdbapp.presentation.movie.MovieViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-val appModule = module{
-    single<MovieRepository> {MovieRepositoryImpl()}
-    viewModel {HomeViewModel(get())}
-    viewModel {MovieViewModel(get())}
-    viewModel {FavoritesViewModel(get())}
+val appModule = module {
+    single<MovieRepository> { MovieRepositoryImpl() }
+    viewModel { HomeViewModel(get()) }
+    viewModel { MovieViewModel(get()) }
+    viewModel { FavoritesViewModel(get()) }
 }
